@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
+
 from .models import Post
 
 
@@ -14,10 +16,15 @@ from .models import Post
 # 세 번째 방법
 @admin.register(Post) # Wrapping : 감싼 대상의 기능을 변경할 수 있음
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'message', 'message_length', 'is_public','created_at', 'updated_at']
+    list_display = ['id', 'photo_tag', 'message', 'message_length', 'is_public','created_at', 'updated_at']
     list_display_links = ['message'] # 링크가 아이디에 잡히던 것은 메시지로 변경
     list_filter = ['created_at', 'is_public']
     search_fields = ['message'] # 서치 옵션, 메시지를 이용해 필터링
+
+    def photo_tag(self, post):
+        if post.photo:
+            return mark_safe(f'<img src="{post.photo.url}" style="width: 72px;" />')
+        return None
 
     def message_length(self, post):
         return f"{len(post.message)} 글자"
