@@ -10,3 +10,7 @@ db/
 
 # Media
 media/
+
+# jupyter notebook
+.ipynb_checkpoints/
+jupyter/
