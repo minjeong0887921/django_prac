@@ -24,6 +24,7 @@ urlpatterns = [
 
     path('blog1/', include('blog1.urls')),
     path('instagram/', include('instagram.urls')),
+    path('accounts/', include('accounts.urls'),)
 ]
 
 

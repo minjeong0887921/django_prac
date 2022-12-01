@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # local apps
     "blog1.apps.Blog1Config",
     "instagram.apps.InstagramConfig",
+    "accounts.apps.AccountsConfig",
 
     # third apps
     "django_extensions",
