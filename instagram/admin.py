@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Post
+from .models import Post, Comment
 
 
 # 첫 번째 방법 : 기본 ModelAdmin으로 동작
@@ -28,3 +28,8 @@ class PostAdmin(admin.ModelAdmin):
 
     def message_length(self, post):
         return f"{len(post.message)} 글자"
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
