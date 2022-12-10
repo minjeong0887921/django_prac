@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
 
     # third apps
+    "bootstrap4",
     "django_extensions",
     "debug_toolbar",
 

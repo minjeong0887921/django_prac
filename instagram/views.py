@@ -25,7 +25,7 @@ from .models import Post
 
 
 # 장고 기본 제공 CBV 활용
-post_list = ListView.as_view(model=Post)
+post_list = ListView.as_view(model=Post, paginate_by=2)
 # post_detail = DetailView.as_view(
 #     model=Post,
 #     queryset=Post.objects.filter(is_public=True))
