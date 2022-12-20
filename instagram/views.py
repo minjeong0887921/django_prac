@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, ListView
+from django.views.generic import ArchiveIndexView, DayArchiveView, DetailView, ListView, MonthArchiveView, YearArchiveView
 from .models import Post
 
 
@@ -50,3 +50,7 @@ class PostDetailView(DetailView):
 
 post_list = PostListView.as_view()
 post_detail = PostDetailView.as_view()
+post_archive = ArchiveIndexView.as_view(model=Post, date_field='created_at')
+post_archive_year = YearArchiveView.as_view(model=Post, date_field='created_at', make_object_list=True)
+# post_archive_month = MonthArchiveView.as_view(model=Post, date_field='created_at')
+# post_archive_day = DayArchiveView.as_view(model=Post, date_field='created_at', month_format = '%m')
