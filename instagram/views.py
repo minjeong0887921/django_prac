@@ -1,9 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, render
+from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView
 from .models import Post
 
 
+# @login_required
 # def post_list(request):
 #     qs = Post.objects.all()
 #     q = request.GET.get('q', '')
@@ -25,11 +28,16 @@ from .models import Post
 
 
 # 장고 기본 제공 CBV 활용
-post_list = ListView.as_view(model=Post, paginate_by=2)
+# post_list = login_required(ListView.as_view(model=Post, paginate_by=3))
 # post_detail = DetailView.as_view(
 #     model=Post,
 #     queryset=Post.objects.filter(is_public=True))
 
+
+@method_decorator(login_required, name='dispatch')
+class PostListView(ListView):
+    model = Post 
+    paginate_by = 3 
 
 class PostDetailView(DetailView):
     model = Post 
@@ -40,4 +48,5 @@ class PostDetailView(DetailView):
             qs = qs.filter(is_public=True)
         return qs 
 
+post_list = PostListView.as_view()
 post_detail = PostDetailView.as_view()
